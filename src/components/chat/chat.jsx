@@ -1,37 +1,56 @@
 import { useEffect, useState } from 'react'
 // import { useMediaQuery } from 'react-responsive'
 import getfollowing from '../../services/getfollowers'
-
-
-
-
-
+import getchat from '../../services/getchat'
+import Moment from 'react-moment'
+import addmessage from '../../services/addmessage'
 export default function Chat({ Socket }) {
     const [user, setUser] = useState([])
     const [chat, setChat] = useState([])
-    const [topic, setTopic] = useState([])
+    const [topic, setTopic] = useState('')
+    const [chatroom, setChatroom] = useState({})
+    const [message, setMessage] = useState([])
+
     // const IsBigScreen = useMediaQuery({ query: '(min-width: 1024px)' })
-    useEffect(() => {
-        console.log(chat, 'chat chateeeee')
-    }, [chat])
+    // useEffect(() => {
+    //     console.log(chat, 'chat chateeeee')
+    // }, [chat])
     useEffect(() => {
         getfollowing().then((data) => {
             console.log(data.data.user)
             setUser(data.data.user)
         })
     }, [])
+    const createchat = (id) => {
+        getchat(id).then((data) => {
+            console.log(data.data.chatdetail)
+            Socket.emit('join_room', { roomId: data.data.chatdetail._id })
+            setChatroom(data.data.chatdetail)
+            setMessage(data.data.chatdetail.messages)
+            setTopic('')
+        })
+    }
     const sendChat = () => {
         let chat = {
-            // roomId: friendDetails.roomId,
+            roomId: chatroom._id,
             text: topic,
             time: new Date(),
-            // author: user.userId
+            author: user[0]._id
         }
+        // console.log(user[0]._id,'jalsdjflajsvlhasvhfljflvsjvcskvbf')
         Socket.emit('client-to-server', chat)
-        // setChatList([chat, ...chatList])
+        addmessage(chat)
+        setMessage([chat,...message])
         setTopic('')
     }
 
+    useEffect(() => {
+        Socket.on('server-to-client', (data) => {
+            console.log(data,'return messagesssss')
+            setMessage((message) => [data, ...message])
+        })
+        return () => Socket.off('server-to-client')
+    }, [Socket])
 
     return (
         <div className=" w-full h-full p-4">
@@ -58,7 +77,10 @@ export default function Chat({ Socket }) {
                             user[0]?.following?.map((obj) => {
                                 return (
 
-                                    <div key={obj._id} className="flex felx-row items-center h-16 " onClick={() => setChat([obj])}>
+                                    <div key={obj._id} className="flex felx-row items-center h-16 " onClick={() => {
+                                        setChat([obj])
+                                        createchat(obj._id)
+                                    }}>
                                         <div className=" m-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-14 h-14">
                                                 <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
@@ -79,8 +101,10 @@ export default function Chat({ Socket }) {
                     !chat?.length ?
                         <div className='grid w-3/4 h-[700px] bg-white  content-center' >
                             <div>
-
-                                <h1 className="text-center">Your Messages</h1>
+                                <h1>hello</h1>
+                                <h1 className="text-center">{message.map((obj)=>{
+                                    return(<h1>{message}</h1>)
+                                })}</h1>
                             </div>
                         </div>
                         :
@@ -100,11 +124,25 @@ export default function Chat({ Socket }) {
                                     <h1 className="text-center">online</h1>
                                 </div>
                             </div>
-                            <div className="w-full h-[590px]">
+                            <div className="w-full h-[590px] overflow-x-auto scrollbar-hide flex flex-col-reverse">
+                            {message?.map((obj)=>{
+                                    return(<div className={`p-3 flex ${user[0]?._id === obj.author ? 'justify-end' : 'justify-start'}`}>
+                                        <div>
+                                    <div className='w-min min-w-[200px] min-h-[50px] flex flex-col bg-gray-200 rounded-full grid place-content-center'>
+                                        <div className='w-full'>
+                                        <h1 className='text-xl  '>{obj?.text}</h1>
+                                        </div>
+                                    </div>
+                                    <div className={`w-16 min-h-16 flex flex-col bg-gray-200  justify-center m-1 rounded-full ${user[0]?._id === obj.author ? 'justify-start' : 'justify-end'}`}>
+                                        <span className='h-4 flex justify-center text-xs '><Moment date={obj.time} format="hh:mm a" trim /></span>
+                                    </div>
+                                        </div>
+                                </div>)
+                                })}
                             </div>
                             <div className="flex justify-center w-full  bg-white h-[53px] pb-2">
                                 <div className='flex flex-row w-3/4 max-h-[44px] border border-gray-200 rounded-full overflow-hidden'>
-                                    <input className='w-full h-full focus:outline-0 ml-4' type="text" placeholder='Message...' value={topic} onChange={(e) => setTopic(e.target.value)}/>
+                                    <input className='w-full h-full focus:outline-0 ml-4' type="text" placeholder='Message...' value={topic} onChange={(e) => setTopic(e.target.value)} />
                                     <button className="mr-3 text-sx font-semibold text-blue-400 " onClick={sendChat}>send</button>
                                 </div>
                             </div>
@@ -112,6 +150,6 @@ export default function Chat({ Socket }) {
                 }
 
             </div>
-        </div>
+        </div >
     )
 }
