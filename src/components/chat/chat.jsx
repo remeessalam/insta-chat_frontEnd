@@ -17,10 +17,17 @@ export default function Chat({ Socket }) {
     // }, [chat])
     useEffect(() => {
         getfollowing().then((data) => {
-            console.log(data.data.user)
+            console.log(data.data.user, '=====----====')
             setUser(data.data.user)
         })
     }, [])
+
+    // const swap = (i) => {
+    //     let temp = user[0].following[0]
+    //     user[0].following[0] = user[0]?.following[i]
+    //     user[0].following[i] = temp
+    //     setUser([{ ...user, following: user[0].following }])
+    // }
     const createchat = (id) => {
         getchat(id).then((data) => {
             console.log(data.data.chatdetail)
@@ -40,13 +47,13 @@ export default function Chat({ Socket }) {
         // console.log(user[0]._id,'jalsdjflajsvlhasvhfljflvsjvcskvbf')
         Socket.emit('client-to-server', chat)
         addmessage(chat)
-        setMessage([chat,...message])
+        setMessage([chat, ...message])
         setTopic('')
     }
 
     useEffect(() => {
         Socket.on('server-to-client', (data) => {
-            console.log(data,'return messagesssss')
+            console.log(data, 'return messagesssss')
             setMessage((message) => [data, ...message])
         })
         return () => Socket.off('server-to-client')
@@ -74,12 +81,14 @@ export default function Chat({ Socket }) {
 
 
                         {
-                            user[0]?.following?.map((obj) => {
+                            user[0]?.following?.map((obj, i) => {
+
                                 return (
 
                                     <div key={obj._id} className="flex felx-row items-center h-16 " onClick={() => {
                                         setChat([obj])
                                         createchat(obj._id)
+                                        // swap(i)
                                     }}>
                                         <div className=" m-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-14 h-14">
@@ -99,12 +108,12 @@ export default function Chat({ Socket }) {
 
                 {
                     !chat?.length ?
-                        <div className='grid w-3/4 h-[700px] bg-white  content-center' >
+                        <div className='grid w-3/4 h-[700px] bg-white justify-center content-center' >
                             <div>
-                                <h1>hello</h1>
-                                <h1 className="text-center">{message.map((obj)=>{
-                                    return(<h1>{message}</h1>)
-                                })}</h1>
+                                <h1 className='text-xl font-semibold text-gray-400'>start sending messages</h1>
+                                {/* <h1 className="text-center">{message.map((obj) => {
+                                    return (<h1>{message}</h1>)
+                                })}</h1> */}
                             </div>
                         </div>
                         :
@@ -125,19 +134,19 @@ export default function Chat({ Socket }) {
                                 </div>
                             </div>
                             <div className="w-full h-[590px] overflow-x-auto scrollbar-hide flex flex-col-reverse">
-                            {message?.map((obj)=>{
-                                    return(<div className={`p-3 flex ${user[0]?._id === obj.author ? 'justify-end' : 'justify-start'}`}>
+                                {message?.map((obj) => {
+                                    return (<div className={`p-3 flex ${user[0]?._id === obj.author ? 'justify-end' : 'justify-start'}`}>
                                         <div>
-                                    <div className='w-min min-w-[200px] min-h-[50px] flex flex-col bg-gray-200 rounded-full grid place-content-center'>
-                                        <div className='w-full'>
-                                        <h1 className='text-xl  '>{obj?.text}</h1>
+                                            <div className={` min-w-[100px] max-w-[700px] min-h-[50px] flex flex-col  ${user[0]?._id === obj.author ? 'bg-gray-200' : 'bg-white  border border-gray-300'} rounded-full grid place-content-center`}>
+                                                <h1 className={`text-sm w-full flex justify-center p-4 text-center`}>{obj?.text}</h1>
+                                            </div>
+                                            <div className={`flex ${user[0]?._id === obj.author ? 'justify-end' : 'justify-start'}`}>
+                                                <div className={`w-16 min-h-16 flex flex-col bg-gray-200  justify-center m-1 rounded-full ${user[0]?._id === obj.author ? 'justify-start' : 'justify-end'}`}>
+                                                    <span className='h-4 flex justify-center text-xs '><Moment date={obj.time} format="hh:mm a" trim /></span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className={`w-16 min-h-16 flex flex-col bg-gray-200  justify-center m-1 rounded-full ${user[0]?._id === obj.author ? 'justify-start' : 'justify-end'}`}>
-                                        <span className='h-4 flex justify-center text-xs '><Moment date={obj.time} format="hh:mm a" trim /></span>
-                                    </div>
-                                        </div>
-                                </div>)
+                                    </div>)
                                 })}
                             </div>
                             <div className="flex justify-center w-full  bg-white h-[53px] pb-2">

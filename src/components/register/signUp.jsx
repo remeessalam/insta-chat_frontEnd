@@ -25,6 +25,7 @@ function Signup() {
         const { data } = await axios.post('/signup', formData)
         if (data.status === !false) {
             JSON.parse(localStorage.setItem('userToken', JSON.stringify(data.token)))
+            localStorage.setItem('userid', JSON.stringify(data?.userid))
             navigate('/')
         }
         else {

@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import { useMediaQuery } from 'react-responsive'
 import Modal from '../components/modal/modal'
 import Slide from '../components/slideover/slideover'
+import Notification from '../components/notification/notification'
 
 const SideBar = (props) => {
 
@@ -16,6 +17,8 @@ const SideBar = (props) => {
     const [open, setOpen] = useState(false)
 
     const [Search, setSearch] = useState(false)
+
+    const [not, setNot] = useState(false)
 
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem('userToken'))
@@ -79,7 +82,7 @@ const SideBar = (props) => {
                             </div>
                             </Link>
 
-                            <div className='flex flex-row items-center w-3/4 ml-8 hover:bg-gray-100 rounded-full  p-1  hover:scale-110  duration-300'>
+                            <div className='flex flex-row items-center w-3/4 ml-8 hover:bg-gray-100 rounded-full  p-1  hover:scale-110  duration-300' onClick={() => setNot(!not)}>
                                 <div className='w-12 ml-4'>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
@@ -184,6 +187,7 @@ const SideBar = (props) => {
             </div>
             <Modal open={open} setOpen={setOpen} />
             <Slide open={Search} setOpen={setSearch} />
+            <Notification open={not} setOpen={setNot} />
         </>
     )
 }

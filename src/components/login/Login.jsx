@@ -29,6 +29,7 @@ function Login() {
             const { data } = await axios.post('/login', formData)
             if (data.status === !false) {
                 localStorage.setItem('userToken', JSON.stringify(data.token))
+                localStorage.setItem('userid', JSON.stringify(data?.userid))
                 navigate('/')
             }
             else {
@@ -47,6 +48,7 @@ function Login() {
 
         if (data.status === !false) {
             (localStorage.setItem('userToken', JSON.stringify(data?.token)))
+            localStorage.setItem('userid', JSON.stringify(data?.userid))
             navigate('/')
         }
         else {

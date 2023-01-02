@@ -1,13 +1,29 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import follow from '../../services/follow'
 import unfollow from '../../services/unfollow'
 
-function Friend({ frnd }) {
+function Friend({ frnd, userfollowing }) {
 
     const [followed, setFollowed] = useState(true)
 
-    function Follow(id) {
+    const [followed2, setFollowed2] = useState(false)
 
+    const [following, setFollowing] = useState([])
+
+
+    useEffect(() => {
+        // console.log(userfollowing, 'userfoollloewoi==========sugg')
+        setFollowing(userfollowing?.following)
+        // console.log(following, frnd._id, 'folloeiwn======')
+        // console.log(following?.some((element) => element._id  === frnd._id) )
+    }, [following])
+
+    // const click = () => {
+    //     setFollowed2(!followed2)
+    //     Follow2(frnd._id)
+    // }
+
+    function Follow(id) {
         if (followed) {
             follow(id).then((data) => {
                 console.log(data, 'followed')
@@ -17,6 +33,18 @@ function Friend({ frnd }) {
                 console.log(data, 'unfollowed')
             })
         }
+    }
+    function Follow2(id) {
+        if (followed2) {
+            follow(id).then((data) => {
+                console.log(data, 'followed')
+            })
+        } else {
+            unfollow(id).then((data) => {
+                console.log(data, 'unfollowed')
+            })
+        }
+
     }
 
     return (
@@ -38,11 +66,23 @@ function Friend({ frnd }) {
                     <h1 className='text-[14px] ml-2 font-semibold text-gray-500'>{frnd.name}</h1>
                 </div>
                 {
-                    followed ?
-                        < button className='text-blue-400 font-semibold text-[13px]' onClick={() => Follow(frnd._id, setFollowed(!followed))} >Follow</button>
+
+                    !following?.some((element) => element._id === frnd._id) ?
+                        followed ?
+                            < button className='text-blue-400 font-semibold text-[13px]' onClick={() => { return (Follow(frnd._id), setFollowed(!followed)) }} >Follow</button>
+                            :
+                            < button className='text-blue-400 font-semibold text-[13px]' onClick={() => { return (Follow(frnd._id), setFollowed(!followed)) }} >unfollow</button>
                         :
-                        < button className='text-blue-400 font-semibold text-[13px]' onClick={() => Follow(frnd._id, setFollowed(!followed))} >unfollow</button>
+
+                        !followed2 ?
+                            < button className='text-blue-400 font-semibold text-[13px]' onClick={() => { return (Follow2(frnd._id), setFollowed2(!followed2)) }}>unfollow</button>
+                            :
+                            < button className='text-blue-400 font-semibold text-[13px]' onClick={() => { return (Follow2(frnd._id), setFollowed2(!followed2)) }} >Follow</button>
+
+
+
                 }
+
             </div>
         </div>
     )

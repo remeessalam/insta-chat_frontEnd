@@ -1,0 +1,53 @@
+// import { useState } from 'react'
+// import follow from '../../services/follow'
+// import unfollow from '../../services/unfollow'
+import ClearSharpIcon from '@mui/icons-material/ClearSharp';
+import Maping from '../friendsmapcontant/map';
+
+export default function Hover({ change, setChange, Contant, Heading }) {
+
+    // const [followed, setFollowed] = useState(false)
+
+    // function Follow(id) {
+    //     if (followed) {
+    //         follow(id).then((data) => {
+    //             console.log(data, 'followed')
+    //         })
+    //     } else {
+    //         unfollow(id).then((data) => {
+    //             console.log(data, 'unfollowed')
+    //         })
+    //     }
+    // }
+    console.log(Contant)
+    return (
+        <>
+            {
+                change && (
+                    <div className="fixed left-[56%] top-[79%]  -translate-y-[50%] -translate-x-[50%] w-full h-full p-6 ">
+                        <div className="flex flex-wrap  modal-content border sm:w-[350px] w-[270px] h-[330px] sm:h-[350px] bg-white mx-auto brightness-100 overflow-y-auto scrollbar-hide" >
+                            <div className='w-full flex flex-row  h-8 bg-white border-b border-gray-300 sticky top-0' >
+                                <div className='flex items-center justify-center font-bold text-lg w-3/4'>
+                                    <h1>{Heading}</h1>
+                                </div>
+                                <div className='flex w-1/4 justify-end'>
+                                    <button className='' onClick={() => setChange(!change)}><ClearSharpIcon /></button>
+                                </div>
+                            </div>
+                            <div className='w-full h-full pt-'>
+                                {
+                                    Contant.map((obj) => {
+                                        return (
+                                          <Maping friends={obj} Heading={Heading}/>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+        </>
+    )
+
+}

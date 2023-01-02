@@ -8,10 +8,20 @@ const uploadImage = (images) => {
       const formData = new FormData()
       formData.append('file', img)
       formData.append('upload_preset', "bdfqt5ve")
-      let data = await axios.post('https://api.cloudinary.com/v1_1/dgveluvei/image/upload', formData)
-      urls.push({ url: data.data.secure_url })
-    })
-    resolve(urls)
+      try{
+        let data = await axios.post('https://api.cloudinary.com/v1_1/dgveluvei/image/upload', formData)
+        console.log(data,'gdgdctfdtt')
+        if(data){
+          urls.push({ url: data.data.secure_url })
+          resolve(urls)
+        }else{
+          resolve(false)
+        }
+      }catch(err){
+        reject(err)
+        console.log(err,'return data uploadedddd')
+      }
+      })
   })
 }
 

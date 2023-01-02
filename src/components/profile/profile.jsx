@@ -4,10 +4,13 @@ import { Example } from '../editprofile/profileEditModal'
 import Getpost from '../../services/getpost'
 import Getuser from '../../services/getuser'
 import jwt_decode from "jwt-decode";
+import Hover from '../hover/hover'
 
 function Profile() {
 
     const IsBigScreen = useMediaQuery({ query: '(min-width: 1024px)' })
+
+    const [hopen, setHopen] = useState(false)
 
     const [open, setOpen] = useState(false)
 
@@ -15,8 +18,21 @@ function Profile() {
 
     const [user, setUser] = useState({})
 
+    const [heading, setHeading] =useState('')
+
+    const [hoverdata , setHoverdata] =useState([])
+
+
     const token = localStorage.getItem('userToken')
     const decoded = jwt_decode(token)
+
+    function hovercontant(data,text){
+        console.log(data,'hover data in profile')
+        setHopen(!hopen)
+       
+        setHoverdata(data)
+       setHeading(text)
+    }
 
     useEffect(() => {
         Getpost().then((data) => {
@@ -48,13 +64,13 @@ function Profile() {
                                         <h1 className="mr-7 font-normal text-3xl ">{user?.name}</h1>
                                     </div>
                                     <div onClick={() => setOpen(true)} className="flex rounded bg-gray-200 hover:bg-gray-300 cursor-pointer justify-items-center p-2 md:3">
-                                        <h1 className="self-center text-sm">edit profile</h1>
+                                        <h1 className="self-center text-sm">Edit profile</h1>
                                     </div>
                                 </div>
                                 <div className="flex flex-row  m-4" >
                                     <h1 className="mr-7">post {post?.length}</h1>
-                                    <h1 className="mr-7">followers {user.followers?.length}</h1>
-                                    <h1>following  {user.following?.length}</h1>
+                                    <h1 className="mr-7 cursor-pointer " onClick={() => hovercontant(user.followers,'Followers')}>followers {user.followers?.length}</h1>
+                                    <h1 className='cursor-pointer' onClick={() => hovercontant(user.following,'Following')}>following  {user.following?.length}</h1>
                                 </div>
                                 <div className="flex flex-row  m-4">
                                     <p>{user?.bio}
@@ -84,8 +100,8 @@ function Profile() {
                                 </div>
                                 <div className="flex flex-row " >
                                     <h1 className="mr-7">post {post?.length}</h1>
-                                    <h1 className="mr-7">followers {user.followers?.length}</h1>
-                                    <h1>following {user.following?.length}</h1>
+                                    <h1 className="mr-7 cursor-pointer" onClick={() => hovercontant(user.followers,'Followers')}>followers {user.followers?.length} </h1>
+                                    <h1 className='cursor-pointer' onClick={() => hovercontant(user.following,'Following')}>following {user.following?.length}</h1>
                                 </div>
                                 <div>
                                     <p>{user?.bio}
@@ -100,7 +116,7 @@ function Profile() {
                                 return (
                                     <div className=" cursor-pointer grid justify-items-start group">
                                         <div className="justify-self-center min-w-80 min-h-80 max-h-80 max-w-80 relative">
-                                            <img className='justify-self-center object-cover h-80 w-80 hover:opacity-25' n src={e.image[0].url} alt="" />
+                                            <img className='justify-self-center object-cover h-80 w-80 hover:opacity-25' n src={e.image[0]?.url} alt="" />
                                             <div className="flex flex-row  absolute bottom-32 left-24 opacity-0 group-hover:opacity-100 ">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                                                     <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
@@ -120,6 +136,7 @@ function Profile() {
                             })
                         }
                         <Example open={open} setOpen={setOpen} />
+                        <Hover change={hopen} setChange={setHopen} Contant={hoverdata} Heading={heading} />
                     </div>
                 </div>
             </div>
