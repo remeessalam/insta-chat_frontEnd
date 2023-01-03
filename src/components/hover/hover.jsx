@@ -34,15 +34,34 @@ export default function Hover({ change, setChange, Contant, Heading }) {
                                     <button className='' onClick={() => setChange(!change)}><ClearSharpIcon /></button>
                                 </div>
                             </div>
-                            <div className='w-full h-full pt-'>
-                                {
-                                    Contant.map((obj) => {
-                                        return (
-                                          <Maping friends={obj} Heading={Heading}/>
-                                        )
-                                    })
-                                }
-                            </div>
+                            {
+                                Heading !== 'Update profile picture' ?
+                                    <div className='w-full h-full pt-'>
+                                        {
+                                            Contant.map((obj, i) => {
+                                                return (
+                                                    <div key={i} >
+                                                        <Maping friends={obj} Heading={Heading} />
+                                                    </div>
+                                                )
+                                            })
+
+                                        }
+                                    </div>
+                                    :
+                                    <div className='w-full h-full grid grid-cols-3 gap-4 content-center' >
+                                        {
+                                            Contant.map((obj, i) => {
+                                                return (
+                                                    <div key={i}>
+                                                        <Maping friends={obj} Heading={Heading} change={change} setChange={setChange} />
+                                                    </div>
+                                                )
+                                            })
+
+                                        }
+                                    </div>
+                            }
                         </div>
                     </div>
                 )

@@ -54,7 +54,7 @@ function Friend({ frnd, userfollowing }) {
                 <div className='flex flex-row items-center'>
                     {frnd.image ?
                         <div>
-                            <img className='w-8 h-8  rounded-full' src={frnd.image} alt='profile pic' />
+                            <img className='w-8 h-8  rounded-full object-cover' src={frnd.image} alt='profile pic' />
                         </div>
                         :
                         <div>

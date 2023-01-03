@@ -10,11 +10,11 @@ export default memo(function Modal({ open, setOpen }) {
 
     const [images, setImages] = useState([])
 
-    const [caption, setCaption] = useState([])
+    const [caption, setCaption] = useState('')
 
     const cancelButtonRef = useRef(true);
 
-    const [error, setError] = useState([])
+    const [error, setError] = useState('')
 
     useEffect(() => {
         console.log(urls, 'useeffent urls console')
@@ -72,7 +72,7 @@ export default memo(function Modal({ open, setOpen }) {
                                             <div className='flex justify-end border-b-2 '>
                                                 {urls.length ?
                                                     <button className=' m-1  text-sky-500 text-sm font-bold' onClick={() => {
-                                                        InsertPost(urls,caption)
+                                                        InsertPost(urls, caption)
                                                         setOpen(false)
                                                         setImages([])
                                                     }}
@@ -86,20 +86,25 @@ export default memo(function Modal({ open, setOpen }) {
                                                     >Share</button>
                                                 }
                                             </div>
-                                            <div className='flex flex-col justify-center mx-auto md:w-[450px] w-[210px] overflow-x-auto snap-x snap-mandatory scrollbar-hide'>
+                                            <div className='flex flex-col mx-auto md:w-[450px] w-[210px] overflow-x-auto snap-x snap-mandatory scrollbar-hide'>
                                                 {
-                                                    !error.length ?
+                                                    !error ?
+                                                        <>
+                                                            {
 
-                                                        images.map((img) => (
-                                                            <div className='flex flex-col justify-center w-full snap-always snap-center'>
-                                                                <img className='m-3 max-h-96 object-cover' src={img} alt="" />
-                                                                <input className='w-full sm:ml-5 ml-3 mt-5' type="text" value={caption} onChange={(e) => setCaption(e.target.value)} placeholder='Write a caption' />
-                                                            </div>
-                                                        ))
+                                                                images.map((img) => (
+                                                                    <div className=' w-full snap-always snap-center'>
+                                                                        <img className='mb-3 w-full max-h-96 object-cover' src={img} alt="" />
+                                                                    </div>
+                                                                ))
+
+                                                            }
+                                                            <input className='w-full h-16 focus:outline-0' type="text" value={caption} onChange={(e) => setCaption(e.target.value)} placeholder='Write a caption' />
+                                                        </>
                                                         :
                                                         <div className='mx-auto min-w-full'>
                                                             <h1>please select another image!</h1>
-                                                            </div>
+                                                        </div>
                                                 }
                                                 {
                                                     error ?

@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from '../../services/axioscall'
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
-
+import {userReducer} from "../../gobalState/userSlice"
+import { useDispatch } from 'react-redux';
 
 
 function Login() {
@@ -15,7 +16,7 @@ function Login() {
     const [error, setError] = useState('')
 
     const { register, handleSubmit, formState: { errors } } = useForm()
-
+const dispatch = useDispatch();
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem('userToken'))
         if (token) {
@@ -30,6 +31,8 @@ function Login() {
             if (data.status === !false) {
                 localStorage.setItem('userToken', JSON.stringify(data.token))
                 localStorage.setItem('userid', JSON.stringify(data?.userid))
+                localStorage.setItem('user', JSON.stringify(data?.user))
+                dispatch(userReducer())
                 navigate('/')
             }
             else {
@@ -49,6 +52,8 @@ function Login() {
         if (data.status === !false) {
             (localStorage.setItem('userToken', JSON.stringify(data?.token)))
             localStorage.setItem('userid', JSON.stringify(data?.userid))
+            localStorage.setItem('user', JSON.stringify(data?.user))
+                dispatch(userReducer())
             navigate('/')
         }
         else {

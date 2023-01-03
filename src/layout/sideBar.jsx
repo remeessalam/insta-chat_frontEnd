@@ -5,6 +5,7 @@ import { useMediaQuery } from 'react-responsive'
 import Modal from '../components/modal/modal'
 import Slide from '../components/slideover/slideover'
 import Notification from '../components/notification/notification'
+import { useSelector } from 'react-redux';
 
 const SideBar = (props) => {
 
@@ -20,15 +21,16 @@ const SideBar = (props) => {
 
     const [not, setNot] = useState(false)
 
+    const { user } = useSelector((state) => ({ ...state }))
+
+    console.log(user.user, 'userrrrrrrrr')
     useEffect(() => {
-        const token = JSON.parse(localStorage.getItem('userToken'))
+        const token = JSON.parse(localStorage.getItem('user'))
         if (!token) {
             navigate('/login')
         }
-        const decoded = jwt_decode(token)
-        decoded.user?.image && setImage(decoded.user.image)
     }, [navigate])
-    
+
     function logout() {
         localStorage.removeItem('userToken')
         localStorage.removeItem('optionsObject')
@@ -47,9 +49,10 @@ const SideBar = (props) => {
                             <Link to={'/'}>
                                 <div className='flex flex-row ml-8  items-center mx-auto w-3/4 hover:bg-gray-100 rounded-full p-1  hover:scale-110  duration-300'>
                                     <div className='w-12 ml-4'>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-10 h-10">
-                                            <path fill-rule="evenodd" d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z" clip-rule="evenodd" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-10 h-10">
+                                            <path fillRule="evenodd" d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z" clipRule="evenodd" />
                                         </svg>
+
                                     </div>
                                     <div>
                                         <h1 className='flex text-align- ml-4 font-bold '>Home</h1>
@@ -59,9 +62,10 @@ const SideBar = (props) => {
 
                             <div className='flex flex-row items-center  w-3/4  ml-8 hover:bg-gray-100 p-1 rounded-full  hover:scale-110  duration-300' onClick={() => setSearch(!Search)}>
                                 <div className='w-12 ml-4'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-10 h-10">
-                                        <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-10 h-10">
+                                        <path fillRule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clipRule="evenodd" />
                                     </svg>
+
                                 </div>
                                 <div>
                                     <h1 className='flex text-align- ml-4'>Search</h1>
@@ -69,17 +73,17 @@ const SideBar = (props) => {
                             </div>
 
                             <Link to={'/chat'}>
-                            <div className='flex flex-row items-center w-3/4 ml-8  hover:bg-gray-100 rounded-full p-1  hover:scale-110  duration-300'>
-                                <div className='w-12 ml-4'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
-                                    </svg>
+                                <div className='flex flex-row items-center w-3/4 ml-8  hover:bg-gray-100 rounded-full p-1  hover:scale-110  duration-300'>
+                                    <div className='w-12 ml-4'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.068.157 2.148.279 3.238.364.466.037.893.281 1.153.671L12 21l2.652-3.978c.26-.39.687-.634 1.153-.67 1.09-.086 2.17-.208 3.238-.365 1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+                                        </svg>
 
+                                    </div>
+                                    <div>
+                                        <h1 className='flex text-align- ml-4'>Message</h1>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h1 className='flex text-align- ml-4'>Message</h1>
-                                </div>
-                            </div>
                             </Link>
 
                             <div className='flex flex-row items-center w-3/4 ml-8 hover:bg-gray-100 rounded-full  p-1  hover:scale-110  duration-300' onClick={() => setNot(!not)}>
@@ -110,9 +114,9 @@ const SideBar = (props) => {
                             <Link to={'/profile'}>
                                 <div className='flex flex-row items-center w-3/4 ml-8 hover:bg-gray-100 rounded-full p-1  hover:scale-110  duration-300'>
                                     <div className='w-12 ml-4'>
-                                        {image ? <img
+                                        {user?.user ? <img
                                             className="h-10 w-10 rounded-full aspect-square"
-                                            src={image}
+                                            src={user?.user?.image}
                                             alt=""
                                         />
                                             : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">

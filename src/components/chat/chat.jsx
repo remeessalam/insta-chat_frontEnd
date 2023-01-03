@@ -66,10 +66,14 @@ export default function Chat({ Socket }) {
                 <div className="bg-white md:w-1/4 max-h-full w-full overflow-hidden border-r">
                     <div className="absalute w-full  h-16  border-b">
                         <div className="flex felx-row items-center h-16 ">
-                            <div className=" m-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-14 h-14">
-                                    <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
-                                </svg>
+                            <div className="w-1/4 m-1">
+                                {user[0]?.image ?
+                                    <img className='w-12 h-12 rounded-full object-cover' src={user[0]?.image} alt={user[0]?.name} />
+                                    :
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-14 h-14">
+                                        <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+                                    </svg>
+                                }
                             </div>
                             <div className="w-full ">
                                 <h1 className="text-md font-semibold text-black">{user[0]?.name}</h1>
@@ -77,7 +81,7 @@ export default function Chat({ Socket }) {
                         </div>
                     </div>
 
-                    <div className='flex flex-col max-h-full p-2  overflow-y-auto scrollbar-hide'>
+                    <div className='flex flex-col max-h-full p-2 justify-center overflow-y-auto scrollbar-hide'>
 
 
                         {
@@ -90,10 +94,15 @@ export default function Chat({ Socket }) {
                                         createchat(obj._id)
                                         // swap(i)
                                     }}>
-                                        <div className=" m-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-14 h-14">
-                                                <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
-                                            </svg>
+                                        <div className="w-1/4 m-1">
+                                            {
+                                                obj.image ?
+                                                    <img className='w-12 h-12 rounded-full object-cover' src={obj.image} alt={obj.name} />
+                                                    :
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-14 h-14">
+                                                        <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+                                                    </svg>
+                                            }
                                         </div>
                                         <div className="w-full ">
                                             <h1>{obj.name}</h1>
@@ -120,12 +129,17 @@ export default function Chat({ Socket }) {
                         <div className="w-3/4 bg-white md:visible invisible">
                             <div className="flex flex-wrap w-full h-16  border-b">
                                 <div className="flex felx-row items-center w-1/4 h-16 ">
-                                    <div className=" m-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-14 h-14">
-                                            <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
-                                        </svg>
+                                    <div className="w-1/4 m-1">
+                                        {
+                                            chat[0].image ?
+                                                <img className='w-12 h-12 rounded-full object-cover' src={chat[0].image} alt={chat[0].name} />
+                                                :
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-14 h-14">
+                                                    <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+                                                </svg>
+                                        }
                                     </div>
-                                    <div className="w-full ">
+                                    <div className="w-3/4 ">
                                         <h1>{chat[0].name}</h1>
                                     </div>
                                 </div>
