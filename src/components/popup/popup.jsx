@@ -20,10 +20,10 @@ export default function Modal({ open, setOpen, posts }) {
 
     const token = localStorage.getItem('userToken')
     const decoded = jwt_decode(token)
-    console.log(posts)
+    // console.log(posts)
     const like = (postId) => {
         clickLike(postId).then((data) => {
-            console.log(data, 'likedta')
+            // console.log(data, 'likedta')
             data.data.msg === 'Liked' && setLiked(false)
             data.data.msg === 'Unliked' && setLiked(true)
             setLiked(!liked)

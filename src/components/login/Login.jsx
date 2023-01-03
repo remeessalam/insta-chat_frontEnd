@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from '../../services/axioscall'
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
-import {userReducer} from "../../gobalState/userSlice"
+import { userReducer } from "../../gobalState/userSlice"
 import { useDispatch } from 'react-redux';
 
 
@@ -16,7 +16,7 @@ function Login() {
     const [error, setError] = useState('')
 
     const { register, handleSubmit, formState: { errors } } = useForm()
-const dispatch = useDispatch();
+    const dispatch = useDispatch();
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem('userToken'))
         if (token) {
@@ -40,7 +40,7 @@ const dispatch = useDispatch();
             }
         }
         catch (err) {
-            console.log(err, 'login error')
+            // console.log(err, 'login error')
         }
     }
     const response = async (credentialResponse) => {
@@ -53,12 +53,12 @@ const dispatch = useDispatch();
             (localStorage.setItem('userToken', JSON.stringify(data?.token)))
             localStorage.setItem('userid', JSON.stringify(data?.userid))
             localStorage.setItem('user', JSON.stringify(data?.user))
-                dispatch(userReducer())
+            dispatch(userReducer())
             navigate('/')
         }
         else {
             setError(data.error)
-            console.log(data.error)
+            // console.log(data.error)
         }
     }
 

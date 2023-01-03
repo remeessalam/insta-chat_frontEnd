@@ -7,7 +7,7 @@ const Getpost = () => {
     return new Promise((resolve, reject) => {
         axios.post('/post/getpost', {}, { headers: { 'x-access-token': token } })
             .then((data) => {
-                console.log(data)
+                // console.log(data)
                 resolve(data)
             })
     })

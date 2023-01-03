@@ -20,13 +20,12 @@ function Content() {
     const refresh = useSelector(state => state.refresh.refresh)
 
     useEffect(() => {
-        console.log('jai')
         allpost().then((data) => {
             setPost(data.data.post)
-            console.log(data, 'home useEffect')
+            // console.log(data, 'home useEffect')
         })
         allusers().then((data) => {
-            console.log(data.data.user, 'user data"s multiple')
+            // console.log(data.data.user, 'user data"s multiple')
             setUsers(data.data.user)
         })
     }, [refresh])

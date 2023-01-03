@@ -9,7 +9,7 @@ const finduser = (name) => {
         axios.post('/finduser', { name }, { headers: { 'x-access-token': token } })
             .then((data) => {
                 resolve(data)
-                console.log(data, 'getuser')
+                // console.log(data, 'getuser')
             })
     })
 
