@@ -4,7 +4,7 @@ import SideBar from '../layout/sideBar'
 
 
 
-function ProfilePage() {
+export function ProfilePage() {
     return (
         <>
             <SideBar component={<Profile />} />
@@ -13,4 +13,3 @@ function ProfilePage() {
 }
 
 
-export default ProfilePage
