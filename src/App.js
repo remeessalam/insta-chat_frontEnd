@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/login/Login'
 import Signup from './components/register/signUp'
-import HomePage from '../src/pages/homepage'
-import Profile from '../src/pages/profilepage'
+import HomePage from './pages/homepage'
+import Profile from './pages/profilepage'
 import Chatpage from './pages/chatpage'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import io from "socket.io-client";
