@@ -68,7 +68,7 @@ export default function Modal({ open, setOpen, posts }) {
 
                                                 <div className='flex grid min-w-full snap-always snap-center justify-center place-items-center'>
 
-                                                    <img className=' h-full max-h-[700px]   object-cover aspect-auto ' src={obj.url} alt="" />
+                                                    <img className=' sm:h-full max-h-[700px]  h-1/2 object-cover aspect-auto ' src={obj.url} alt="" />
                                                 </div>
 
                                             )
