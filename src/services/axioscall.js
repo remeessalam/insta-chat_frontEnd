@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:2000/',
-  timeout: 1000,
+  baseURL: 'https://instachat.adidasshoe.shop',
 });
 
 export default instance; 

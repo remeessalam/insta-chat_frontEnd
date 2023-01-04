@@ -1,4 +1,4 @@
-import { Fragment, useRef } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { useForm } from 'react-hook-form';
 import UpdateProfile from '../../services/updateprofile';
@@ -8,8 +8,8 @@ export function Example({ open, setOpen }) {
 
     const { register, handleSubmit } = useForm()
 
-    const cancelButtonRef = useRef(true)
-
+    // const cancelButtonRef = useRef(true)
+    // initialFocus={cancelButtonRef}
     const onSubmit = async (formData) => {
         const token = localStorage.getItem('userToken')
         const decoded = jwt_decode(token)
@@ -18,7 +18,7 @@ export function Example({ open, setOpen }) {
 
     return (
         <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
+            <Dialog as="div" className="relative z-10" onClose={setOpen}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"

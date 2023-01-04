@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState, memo } from 'react'
+import { Fragment, useState, memo } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import uploadImage from '../../services/imageupload'
 import InsertPost from '../../services/uploadpost'
@@ -12,7 +12,7 @@ export default memo(function Modal({ open, setOpen }) {
 
     const [caption, setCaption] = useState('')
 
-    const cancelButtonRef = useRef(true);
+    // const cancelButtonRef = useRef(true);
 
     const [error, setError] = useState('')
 
@@ -41,7 +41,7 @@ export default memo(function Modal({ open, setOpen }) {
     }
     return (
         <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
+            <Dialog as="div" className="relative z-10"  onClose={setOpen}>
 
 
                 <div className="fixed inset-0 z-10 overflow-y-auto">

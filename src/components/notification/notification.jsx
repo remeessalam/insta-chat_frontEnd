@@ -75,7 +75,7 @@ export default function Notification({ open, setOpen }) {
                                                             <div className='w-full'>
 
                                                                 {
-                                                                    notifications.posts?.map((obj, i) => {
+                                                                    notifications?.posts?.map((obj, i) => {
                                                                         return (
 
                                                                             <div key={i} className='flex justify-start justify-between items-center w-full mb-2'>
