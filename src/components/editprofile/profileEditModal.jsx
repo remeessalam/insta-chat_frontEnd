@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { useForm } from 'react-hook-form';
-import UpdateProfile from '../../services/updateprofile';
+import UpdateProfile from '../../services/updateProfile';
 import jwt_decode from "jwt-decode";
 
 export function Example({ open, setOpen }) {
