@@ -54,7 +54,7 @@ export default function Modal({ open, setOpen, posts }) {
                 <div className="fixed left-[50%] top-[50%]  -translate-y-[50%] -translate-x-[50%] w-full h-full p-6 ">
                     <div className="flex flex-wrap modal-content border w-[350px] lg:w-[1200px] lg:h-[700px] h-[650px] bg-white mx-auto brightness-100 overflow-y-auto scrollbar-hide" >
                         <div className='w-full flex justify-end '>
-                            <button className='fixed' onClick={() => setOpen(!open)}><ClearSharpIcon /></button>
+                            <button className='fixed sm:bg-inherit bg-white' onClick={() => setOpen(!open)}><ClearSharpIcon /></button>
                         </div>
                         <div className='flex items-center sm:w-1/2 w-full h-1/2 sm:h-full bg-black '>
                             <div className="flex items-center w-full" >
@@ -68,7 +68,7 @@ export default function Modal({ open, setOpen, posts }) {
 
                                                 <div className='flex grid min-w-full snap-always snap-center justify-center place-items-center'>
 
-                                                    <img className=' h-full max-h-[700px]   object-cover aspect-auto ' src={obj.url} alt="" />
+                                                    <img className=' h-full max-h-[325px] sm:max-h-[700px]  object-cover aspect-auto ' src={obj.url} alt="" />
                                                 </div>
 
                                             )

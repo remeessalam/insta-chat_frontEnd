@@ -118,7 +118,7 @@ function Signup() {
                                 className="group relative flex w-full justify-center rounded-md border border-transparent bg-[#0ea5e9] py-2 px-4 text-sm font-medium text-white hover:bg-[#0ea5e9] "
                             >
 
-                                Log in
+                                Sign up
                             </button>
                             {
                                 error ? <p className='text-center text-red-600 pt-3'>{error}</p>

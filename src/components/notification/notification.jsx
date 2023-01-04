@@ -72,7 +72,7 @@ export default function Notification({ open, setOpen }) {
                                                 <div className="h-full " aria-hidden="true" >
                                                     <div>
                                                         <div className='flex flex-row justify-start   border-gray-200 p-1 w-full'>
-                                                            <div className='w-full'>
+                                                            <div className='w-full overflow-y-auto scrollbar-hide'>
 
                                                                 {
                                                                     notifications?.posts?.map((obj, i) => {

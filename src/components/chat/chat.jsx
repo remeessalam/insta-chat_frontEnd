@@ -22,12 +22,7 @@ export default function Chat({ Socket }) {
         })
     }, [])
 
-    // const swap = (i) => {
-    //     let temp = user[0].following[0]
-    //     user[0].following[0] = user[0]?.following[i]
-    //     user[0].following[i] = temp
-    //     setUser([{ ...user, following: user[0].following }])
-    // }
+ 
     const createchat = (id) => {
         getchat(id).then((data) => {
             // console.log(data.data.chatdetail)
@@ -63,10 +58,10 @@ export default function Chat({ Socket }) {
         <div className=" w-full h-full p-4">
             <div className="flex flex-wrap w-full h-full max-h-[709px]  border border-gray-100">
 
-                <div className="bg-white md:w-1/4 max-h-full w-full overflow-hidden border-r">
+                <div className="bg-white w-1/4 max-h-full  overflow-hidden border-r">
                     <div className="absalute w-full  h-16  border-b">
-                        <div className="flex felx-row items-center h-16 ">
-                            <div className="w-1/4 m-1">
+                        <div className="flex felx-row w-full items-center h-16 ">
+                            <div className="sm:w-1/4 w-full m-1">
                                 {user[0]?.image ?
                                     <img className='w-12 h-12 rounded-full object-cover' src={user[0]?.image} alt={user[0]?.name} />
                                     :
@@ -76,7 +71,7 @@ export default function Chat({ Socket }) {
 
                                 }
                             </div>
-                            <div className="w-full ">
+                            <div className="sm:w-full w-1  md:visible invisible">
                                 <h1 className="text-md font-semibold text-black">{user[0]?.name}</h1>
                             </div>
                         </div>
@@ -90,12 +85,11 @@ export default function Chat({ Socket }) {
 
                                 return (
 
-                                    <div key={obj._id} className="flex felx-row items-center h-16 " onClick={() => {
+                                    <div key={obj._id} className="flex sm:flex-row flex-col items-center sm:h-16 h-24 " onClick={() => {
                                         setChat([obj])
                                         createchat(obj._id)
-                                        // swap(i)
                                     }}>
-                                        <div className="w-1/4 m-1">
+                                        <div className="sm:w-1/4  w-full m-1">
                                             {
                                                 obj.image ?
                                                     <img className='w-12 h-12 rounded-full object-cover' src={obj.image} alt={obj.name} />
@@ -105,7 +99,7 @@ export default function Chat({ Socket }) {
                                                     </svg>
                                             }
                                         </div>
-                                        <div className="w-full ">
+                                        <div className="flex flex-row truncate sm:w-full w-full ">
                                             <h1>{obj.name}</h1>
                                         </div>
                                     </div>
@@ -127,10 +121,10 @@ export default function Chat({ Socket }) {
                             </div>
                         </div>
                         :
-                        <div className="w-3/4 bg-white md:visible invisible">
+                        <div className="w-3/4 bg-white ">
                             <div className="flex flex-wrap w-full h-16  border-b">
                                 <div className="flex felx-row items-center w-1/4 h-16 ">
-                                    <div className="w-1/4 m-1">
+                                    <div className="sm:w-1/4 w-full m-1">
                                         {
                                             chat[0].image ?
                                                 <img className='w-12 h-12 rounded-full object-cover' src={chat[0].image} alt={chat[0].name} />
@@ -140,7 +134,7 @@ export default function Chat({ Socket }) {
                                                 </svg>
                                         }
                                     </div>
-                                    <div className="w-3/4 ">
+                                    <div className="sm:w-3/4 w-1 md:visible invisible">
                                         <h1>{chat[0].name}</h1>
                                     </div>
                                 </div>
@@ -148,7 +142,7 @@ export default function Chat({ Socket }) {
                                     <h1 className="text-center">online</h1>
                                 </div>
                             </div>
-                            <div className="w-full h-[590px] overflow-x-auto scrollbar-hide flex flex-col-reverse">
+                            <div className="w-full sm:h-[590px] h-[540px] overflow-x-auto scrollbar-hide flex flex-col-reverse">
                                 {message?.map((obj,i) => {
                                     return (<div key={i} className={`p-3 flex ${user[0]?._id === obj.author ? 'justify-end' : 'justify-start'}`}>
                                         <div>
