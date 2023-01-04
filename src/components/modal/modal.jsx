@@ -1,6 +1,6 @@
 import { Fragment, useState, memo } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import uploadImage from '../../services/imageupload'
+import uploadImage from '../../services/imageUpload'
 import InsertPost from '../../services/uploadpost'
 
 
