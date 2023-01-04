@@ -56,7 +56,7 @@ export default function Modal({ open, setOpen, posts }) {
                         <div className='w-full flex justify-end '>
                             <button className='fixed' onClick={() => setOpen(!open)}><ClearSharpIcon /></button>
                         </div>
-                        <div className='flex items-center sm:w-1/2 w-full h-1/2 sm:h-full bg-black '>
+                        <div className='flex items-center sm:w-1/2 w-full h-1/2 sm:h-1/2 bg-black '>
                             <div className="flex items-center w-full" >
                                 <div className='flex  h-full w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide bg-black' onClick={() => {
                                     setOpen(!open)
