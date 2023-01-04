@@ -185,6 +185,7 @@ const SideBar = (props) => {
                                             </svg>}
                                     </div>
                                 </Link>
+                                <button className="flex px-4 py-2" onClick={logout}>x</button>
                             </div>
                         </div>
                     </div>
