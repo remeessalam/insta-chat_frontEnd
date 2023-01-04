@@ -58,7 +58,7 @@ export default function Modal({ open, setOpen, posts }) {
                         </div>
                         <div className='flex items-center sm:w-1/2 w-full h-1/2 sm:h-1/2 bg-black '>
                             <div className="flex items-center w-full" >
-                                <div className='flex  h-full w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide bg-black' onClick={() => {
+                                <div className='flex sm:h-full h-1/2 w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide bg-black' onClick={() => {
                                     setOpen(!open)
 
                                 }}>
@@ -68,7 +68,7 @@ export default function Modal({ open, setOpen, posts }) {
 
                                                 <div className='flex grid min-w-full snap-always snap-center justify-center place-items-center'>
 
-                                                    <img className=' sm:h-full max-h-[700px]  h-1/2 object-cover aspect-auto ' src={obj.url} alt="" />
+                                                    <img className='h-full max-h-[700px]   object-cover aspect-auto ' src={obj.url} alt="" />
                                                 </div>
 
                                             )
