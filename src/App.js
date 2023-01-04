@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/login/Login'
 import Signup from './components/register/signUp'
 import HomePage from './pages/homepage'
-import {ProfilePage} from './pages/profilepage'
+// import {ProfilePage} from './pages/profilepage'
 import Chatpage from './pages/chatpage'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import io from "socket.io-client";
@@ -16,7 +16,7 @@ function App() {
             <Route exact path='/login' element={<Login />} />
             <Route exact path='/signup' element={<Signup />} />
             <Route exact path='/' element={<HomePage />} />
-            <Route exact path='/profile' element={<ProfilePage />} />
+            {/* <Route exact path='/profile' element={<ProfilePage />} /> */}
             <Route exact path='/chat' element={<Chatpage Socket={socket} />} />
           </Routes>
         </BrowserRouter>
