@@ -48,7 +48,7 @@ function Profile() {
 
     return (
         <>
-            <div className="w-full  h-screen lg:pt-10 pt-2 overflow-x-auto scrollbar-hide">
+            <div className="w-full  h-screen lg:pt-10 pt-2  mx-auto overflow-x-auto scrollbar-hide">
                 <div className="flex-col w-full h-full mx-auto ">
                     {IsBigScreen ?
                         <div className="flex flex-row  h-1/2 p-1 sm:p-4">
@@ -126,7 +126,7 @@ function Profile() {
                             </div>
                         </div>
                     }
-                    <div className="p-5 grid grid-cols-1 md:grid-cols-3 gap-8 ">
+                    <div className="p-5 pb-14 grid grid-cols-1 md:grid-cols-3 gap-8 ">
                         {
                             post.map((e, i) => {
                                 return (
