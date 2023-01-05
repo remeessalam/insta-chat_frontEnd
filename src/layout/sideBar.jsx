@@ -175,7 +175,7 @@ const SideBar = (props) => {
                                 </div>
                                 <Link to={'/profile'}>
                                     <div className='flex  items-center '>
-                                        {user.user ? <img
+                                        {user.user?.image ? <img
                                             className="h-10 w-10 rounded-full  object-cover"
                                             src={user?.user?.image}
                                             alt=""

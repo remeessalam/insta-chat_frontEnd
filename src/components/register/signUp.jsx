@@ -5,10 +5,14 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from '../../services/axioscall'
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
+import { userReducer } from "../../gobalState/userSlice"
+import { useDispatch } from 'react-redux';
 
 function Signup() {
 
     const navigate = useNavigate()
+
+    const dispatch = useDispatch();
 
     const [error, setError] = useState('')
 
@@ -24,10 +28,11 @@ function Signup() {
     const onSubmit = async (formData) => {
         const { data } = await axios.post('/signup', formData)
         if (data.status === true) {
-          
+
             localStorage.setItem('userToken', JSON.stringify(data.token))
             localStorage.setItem('userid', JSON.stringify(data?.userid))
             localStorage.setItem('user', JSON.stringify(data?.user))
+            dispatch(userReducer())
             navigate('/')
         }
         else {
