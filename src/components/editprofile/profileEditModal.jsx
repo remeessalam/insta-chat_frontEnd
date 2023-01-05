@@ -3,17 +3,24 @@ import { Dialog, Transition } from '@headlessui/react'
 import { useForm } from 'react-hook-form';
 import UpdateProfile from '../../services/updateProfile';
 import jwt_decode from "jwt-decode";
+import { refreshReducer } from '../../gobalState/rerenderSlice';
+import { useDispatch } from 'react-redux';
 
 export function Example({ open, setOpen }) {
 
     const { register, handleSubmit } = useForm()
+
+  const  dispatch = useDispatch()
 
     // const cancelButtonRef = useRef(true)
     // initialFocus={cancelButtonRef}
     const onSubmit = async (formData) => {
         const token = localStorage.getItem('userToken')
         const decoded = jwt_decode(token)
-        UpdateProfile(formData, decoded)
+        UpdateProfile(formData, decoded).then((data)=>{
+            setOpen(false)
+            dispatch(refreshReducer())
+        })
     }
 
     return (
@@ -134,7 +141,7 @@ export function Example({ open, setOpen }) {
                                                                 <button
                                                                     type="submit"
                                                                     className="imt-3 inline-flex w-full justify-center rounded-md border-transparent  px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-100 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                                                                    onClick={() => setOpen(false)}
+                                                                    // onClick={() => setOpen(false)}
                                                                 >
                                                                     Edit profile
                                                                 </button>

@@ -45,6 +45,7 @@ function Profile() {
         setHeading(text)
     }
     const { user } = useSelector((state) => ({ ...state }))
+    console.log(user ,'in profile page ')
 
     return (
         <>

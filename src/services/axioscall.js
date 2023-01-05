@@ -5,3 +5,7 @@ const instance = axios.create({
 });
 
 export default instance; 
+
+
+// https://instachat.adidasshoe.shop
+// http://localhost:8000

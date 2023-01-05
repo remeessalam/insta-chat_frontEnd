@@ -48,7 +48,15 @@ function Post({ e }) {
     return (
         <div key={e._id} className=" flex flex-col  mx-auto rounded-md border border-slate-300 lg:w-3/4 w-full mb-3 drop-shadow-l">
             <div className="flex justify-start min-h-18 mt-2">
-                <img className="ml-3 rounded-full w-9 h-9 object-cover" src={e.image[0]?.url} alt="" />
+                {
+                    e.user.image ?
+                        <img className="ml-3 rounded-full w-9 h-9 object-cover" src={e.user.image} alt="" />
+                        :
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-12 h-12">
+                            <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clipRule="evenodd" />
+                        </svg>
+
+                }
                 <div className='flex-col'>
                     <h1 className="text-justify text-sm ml-3">{e.user.name}</h1>
                     <div className="flex flex-row ml-3">
@@ -68,7 +76,7 @@ function Post({ e }) {
                 //     setOpen(!open)
                 // }}
                 >
-                    {e.image.map((obj,i) => {
+                    {e.image.map((obj, i) => {
                         return (
 
                             <div key={i} className=' min-w-full snap-always snap-center'>
@@ -91,7 +99,7 @@ function Post({ e }) {
                         <div className={`ml-2 flex flex-row cursor-pointer `} onClick={() => { like(e._id) }}>
                             {/* <FavoriteBorderRoundedIcon /> */}
                             {/* <h1>like</h1> */}
-                           
+
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="gray" className="w-8 h-8">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                             </svg>
@@ -103,7 +111,7 @@ function Post({ e }) {
                             like(e._id)
                         }}>
                             {/* <FavoriteIcon /> */}
-                           
+
                             <svg xmlns="http://www.w3.org/2000/svg" fill="#ed4956" viewBox="0 0 24 24" strokeWidth={1.5} className="w-8 h-8">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                             </svg>
@@ -118,7 +126,7 @@ function Post({ e }) {
                         setOpen(!open)
 
                     }}>
-                        
+
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z" />
                         </svg>
