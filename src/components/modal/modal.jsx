@@ -48,13 +48,13 @@ export default memo(function Modal({ open, setOpen }) {
                     <div className="flex min-h-full items-end justify-center  p-4 w-full text-center items-center sm:p-0 ">
 
                         <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all  sm:max-w-xl p-5">
-                            <div className="bg-white p-1 md:w-[500px] w-[250px] h-full ">
+                            <div className="bg-white p-1 md:w-[500px] w-[290px] h-full ">
                                 <div className="sm:flex sm:items-start  w-full">
                                     <div as="h3" className="text-lg font-medium leading-6 text-gray-900 fixed">
-                                        <div className='relative right-0 '>
+                                        <div className='relative right-0 sm:p-1 p-6'>
                                             <button
                                                 type="button"
-                                                className="inline-flex  fixed top-0 right-0 p-4 text-base font-medium text-black  "
+                                                className="inline-flex  fixed top-0 right-0 p-1  text-base font-medium text-black  "
                                                 onClick={() => {
                                                     setImages([])
                                                     setOpen(false)
@@ -69,17 +69,17 @@ export default memo(function Modal({ open, setOpen }) {
                                         </div>
                                     </div>
                                     {
-                                        images && images.length ? (<div className='border-2 p-2  rounded-md'>
-                                            <div className='flex justify-end border-b-2 '>
+                                        images && images.length ? (<div className='border-2 p-2  rounded-md '>
+                                            <div className='flex justify-end border-b-2 w-full mr-7 mb-1'>
                                                 {urls.length ?
-                                                    <button className=' m-1  text-sky-500 text-sm font-bold' onClick={() => {
+                                                    <button className=' m-1  text-sky-500 text-sm font-bold ' onClick={() => {
                                                         InsertPost(urls, caption)
                                                         setOpen(false)
                                                         setImages([])
                                                     }}
                                                     >Share</button>
                                                     :
-                                                    <button className=' m-1  text-sky-100 text-sm font-bold' onClick={() => {
+                                                    <button className=' m-1  text-sky-100 text-sm font-bold cursor-wait' onClick={() => {
                                                         // InsertPost(urls)
                                                         // setOpen(false)
                                                         // setImages([])

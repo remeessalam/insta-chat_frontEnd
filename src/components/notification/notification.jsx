@@ -62,9 +62,9 @@ export default function Notification({ open, setOpen }) {
                                             </button>
                                         </div>
                                     </Transition.Child>
-                                    <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                                        <div className="px-4 sm:px-6">
-                                            <Dialog.Title className="text-2xl font-bold text-gray-900">Notifications</Dialog.Title>
+                                    <div className="flex h-full flex-col relative  overflow-y-scroll bg-white py-6 shadow-xl">
+                                        <div className=" px-4 sm:px-6">
+                                            <Dialog.Title className=" text-2xl font-bold text-gray-900">Notifications</Dialog.Title>
                                         </div>
                                         <div className="relative mt-6 flex-1 px-4 sm:px-6">
                                             {/* Replace with your content */}
@@ -72,7 +72,7 @@ export default function Notification({ open, setOpen }) {
                                                 <div className="h-full " aria-hidden="true" >
                                                     <div>
                                                         <div className='flex flex-row justify-start   border-gray-200 p-1 w-full'>
-                                                            <div className='w-full overflow-y-auto scrollbar-hide'>
+                                                            <div className='w-full overflow-y-auto overflow-hidden scrollbar-hide'>
 
                                                                 {
                                                                     notifications?.posts?.map((obj, i) => {
