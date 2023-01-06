@@ -28,7 +28,7 @@ function Content() {
             // console.log(data.data.user, 'user data"s multiple')
             setUsers(data.data.user)
         })
-    }, [refresh])
+    }, [refresh,post])
 
     const IsBigScreen = useMediaQuery({ query: '(min-width: 1024px)' })
 

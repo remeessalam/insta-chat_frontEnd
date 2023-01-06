@@ -10,7 +10,7 @@ import Popup from '../popup/popup'
 function Post({ e }) {
 
     const [liked, setLiked] = useState()
-    const [likedEffect, setLikedEffect] = useState(false)
+    // const [likedEffect, setLikedEffect] = useState(false)
 
     const [comment, setComment] = useState()
 
@@ -22,10 +22,10 @@ function Post({ e }) {
     const decoded = jwt_decode(token)
 
     const like = (postId) => {
-        setLikedEffect(true)
-        setTimeout(() => {
-            setLikedEffect(false)
-        }, 200)
+        // setLikedEffect(true)
+        // setTimeout(() => {
+        //     setLikedEffect(false)
+        // }, 200)
         clickLike(postId).then((data) => {
             data.data.msg === 'Liked' && setLiked(false)
             data.data.msg === 'Unliked' && setLiked(true)
@@ -107,7 +107,7 @@ function Post({ e }) {
 
                         </div>
                         :
-                        <div className={`ml-2 flex flex-row cursor-pointer ${likedEffect ? 'scale-150' : ""} `} onClick={() => {
+                        <div className={`ml-2 flex flex-row cursor-pointer  `} onClick={() => {
                             like(e._id)
                         }}>
                             {/* <FavoriteIcon /> */}
