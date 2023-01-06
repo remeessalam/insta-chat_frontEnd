@@ -117,7 +117,7 @@ const SideBar = (props) => {
                             <Link to={'/profile'}>
                                 <div className='flex flex-row items-center w-3/4 ml-8 hover:bg-gray-100 rounded-full p-1  hover:scale-110  duration-300'>
                                     <div className='w-12 ml-4'>
-                                        {user?.user.image ? <img
+                                        {user?.user?.image ? <img
                                             className="h-10 w-10 rounded-full aspect-square object-cover"
                                             src={user?.user?.image}
                                             alt=""
@@ -175,7 +175,7 @@ const SideBar = (props) => {
                                 </div>
                                 <Link to={'/profile'}>
                                     <div className='flex  items-center '>
-                                        {user.user?.image ? <img
+                                        {user?.user?.image ? <img
                                             className="h-10 w-10 rounded-full  object-cover"
                                             src={user?.user?.image}
                                             alt=""
