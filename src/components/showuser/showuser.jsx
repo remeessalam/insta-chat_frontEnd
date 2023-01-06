@@ -31,12 +31,12 @@ function ShowProfile({id}) {
     useEffect(() => {
         GetfriendPost(id).then((data) => {
             setPost(data.data.post)
-            console.log(data,'frnd all post')
+            // console.log(data,'frnd all post')
         })
         Getfriend(id).then((data) => {
             setUser(data.data.frienddetails
                 )
-            console.log(data,'userdetails')
+            // console.log(data,'userdetails')
         })
     }, [id])
     // function hovercontant(data, text) {

@@ -12,11 +12,11 @@ export default function Maping({ friends, Heading, change, setChange }) {
     function Follow(id) {
         if (followed) {
             follow(id).then((data) => {
-                console.log(data, 'followed')
+                console.log('followed')
             })
         } else {
             unfollow(id).then((data) => {
-                console.log(data, 'unfollowed')
+                console.log('unfollowed')
             })
         }
     }

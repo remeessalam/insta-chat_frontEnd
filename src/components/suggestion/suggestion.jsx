@@ -3,7 +3,7 @@ import follow from '../../services/follow'
 import unfollow from '../../services/unfollow'
 import { Link } from 'react-router-dom'
 
-function Friend({ frnd, userfollowing ,setOpen , setFind}) {
+function Friend({ frnd, userfollowing, setOpen, setFind }) {
 
     const [followed, setFollowed] = useState(true)
 
@@ -27,22 +27,22 @@ function Friend({ frnd, userfollowing ,setOpen , setFind}) {
     function Follow(id) {
         if (followed) {
             follow(id).then((data) => {
-                console.log(data, 'followed')
+                console.log('followed')
             })
         } else {
             unfollow(id).then((data) => {
-                console.log(data, 'unfollowed')
+                console.log('unfollowed')
             })
         }
     }
     function Follow2(id) {
         if (followed2) {
             follow(id).then((data) => {
-                console.log(data, 'followed')
+                console.log('followed')
             })
         } else {
             unfollow(id).then((data) => {
-                console.log(data, 'unfollowed')
+                console.log('unfollowed')
             })
         }
 
@@ -53,9 +53,9 @@ function Friend({ frnd, userfollowing ,setOpen , setFind}) {
 
         <div key={frnd._id} className='flex flex-col m-3 '>
             <div className='flex flex-row flex justify-between'>
-                <Link to={`/showuser/${frnd._id}`} onClick={()=>{
+                <Link to={`/showuser/${frnd._id}`} onClick={() => {
                     setOpen(false)
-                    setFind('') 
+                    setFind('')
                 }}>
                     <div className='flex flex-row items-center cursor-pointer' >
                         {frnd.image ?
