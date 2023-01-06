@@ -36,7 +36,7 @@ function Profile() {
         Getuser().then((userdata) => {
             setUser(userdata.data.user)
         })
-    }, [post])
+    }, [])
     function hovercontant(data, text) {
         // console.log(data, 'hover data in profile')
         setHopen(!hopen)
