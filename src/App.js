@@ -8,7 +8,7 @@ import { Showuser } from './pages/showProfile'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import io from "socket.io-client";
 function App() {
-  const socket = io.connect("http://localhost:4000");
+  const socket = io.connect("https://instachat.adidasshoe.shop/socket");
   return (
     <div>
       <GoogleOAuthProvider clientId="117584395273-oljruplarl1md005un2cv7rmkvf11so6.apps.googleusercontent.com">
@@ -28,3 +28,5 @@ function App() {
 }
 
 export default App;
+
+// http://localhost:4000
