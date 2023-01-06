@@ -12,6 +12,7 @@ export default function Slide({ open, setOpen }) {
 
     const [users, setUsers] = useState([])
 
+
     const [accountholder, setAccountholder] = useState([])
 
 
@@ -27,7 +28,6 @@ export default function Slide({ open, setOpen }) {
             // console.log(accountholder, 'holder=============')
         })
     }, [find])
-
     return (
         <Transition.Root show={open} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -84,6 +84,8 @@ export default function Slide({ open, setOpen }) {
                                             {/* Replace with your content */}
                                             <div className="absolute inset-0 px-4 sm:px-6">
                                                 <div className="h-full " aria-hidden="true" >
+
+
                                                     <div>
                                                         <div className='flex flex-row justify-start pl-7 border-b  border-gray-200 p-3 w-full'>
                                                             <div className='w-3/4'>
@@ -100,12 +102,15 @@ export default function Slide({ open, setOpen }) {
                                                         {
                                                             users?.map((obj) => {
 
-                                                                return <Friend key={obj._id} frnd={obj} userfollowing={accountholder} />
+                                                                return <Friend key={obj._id} frnd={obj} userfollowing={accountholder} setOpen={setOpen} setFind={setFind}/>
                                                             })
+
                                                         }
-                                                        <div>
-                                                        </div>
+
                                                     </div>
+
+
+
                                                 </div>
                                             </div>
                                         </div>

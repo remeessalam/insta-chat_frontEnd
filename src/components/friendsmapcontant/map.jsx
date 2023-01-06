@@ -22,7 +22,7 @@ export default function Maping({ friends, Heading, change, setChange }) {
     }
     function setprofilepic(image) {
         profilepicture(image).then(({ data }) => {
-            console.log(data, 'setprofilepic')
+            // console.log(data, 'setprofilepic')
             localStorage.setItem('user', JSON.stringify(data?.user))
             dispatch(userImage(data.user.image))
             setChange(!change)
