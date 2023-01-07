@@ -99,8 +99,8 @@ export default function Chat({ Socket }) {
                                                     </svg>
                                             }
                                         </div>
-                                        <div className="flex flex-row truncate sm:w-full w-full ">
-                                            <h1>{obj.name}</h1>
+                                        <div className="flex flex-row  sm:w-full w-full ">
+                                            <h1 className='truncate'>{obj.name}</h1>
                                         </div>
                                     </div>
                                 )
@@ -142,12 +142,12 @@ export default function Chat({ Socket }) {
                                     <h1 className="text-center">online</h1>
                                 </div>
                             </div>
-                            <div className="w-full sm:h-[590px] h-[540px] overflow-x-auto scrollbar-hide flex flex-col-reverse">
+                            <div className="w-full sm:h-[590px] h-[530px] overflow-x-auto scrollbar-hide flex flex-col-reverse">
                                 {message?.map((obj,i) => {
                                     return (<div key={i} className={`p-3 flex ${user[0]?._id === obj.author ? 'justify-end' : 'justify-start'}`}>
                                         <div>
                                             <div className={` min-w-[100px] max-w-[700px] min-h-[50px] flex flex-col  ${user[0]?._id === obj.author ? 'bg-gray-200' : 'bg-white  border border-gray-300'} rounded-full grid place-content-center`}>
-                                                <h1 className={`text-sm w-full flex justify-center p-4 text-center`}>{obj?.text}</h1>
+                                                <h1 className={`text-sm w-full flex justify-center  p-4 text-center`}>{obj?.text}</h1>
                                             </div>
                                             <div className={`flex ${user[0]?._id === obj.author ? 'justify-end' : 'justify-start'}`}>
                                                 <div className={`w-16 min-h-16 flex flex-col bg-gray-200  justify-center m-1 rounded-full ${user[0]?._id === obj.author ? 'justify-start' : 'justify-end'}`}>
