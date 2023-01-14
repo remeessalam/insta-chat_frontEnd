@@ -4,31 +4,41 @@ import getfollowing from '../../services/getfollowers'
 import getchat from '../../services/getchat'
 import Moment from 'react-moment'
 import addmessage from '../../services/addmessage'
+import { useNavigate } from 'react-router-dom'
 export default function Chat({ Socket }) {
     const [user, setUser] = useState([])
     const [chat, setChat] = useState([])
     const [topic, setTopic] = useState('')
     const [chatroom, setChatroom] = useState({})
     const [message, setMessage] = useState([])
+    const navigate = useNavigate()
+
 
     // const IsBigScreen = useMediaQuery({ query: '(min-width: 1024px)' })
     // useEffect(() => {
     //     console.log(chat, 'chat chateeeee')
     // }, [chat])
     useEffect(() => {
+        const token = JSON.parse(localStorage.getItem('userToken'))
+        !token && navigate('/login')
+    }, [navigate])
+
+    useEffect(() => {
         getfollowing().then((data) => {
             // console.log(data.data.user, '=====----====')
-            setUser(data.data.user)
+            setUser(data?.data?.user)
         })
     }, [])
 
- 
+
     const createchat = (id) => {
         getchat(id).then((data) => {
             // console.log(data.data.chatdetail)
-            Socket.emit('join_room', { roomId: data.data.chatdetail._id })
-            setChatroom(data.data.chatdetail)
-            setMessage(data.data.chatdetail.messages)
+            Socket.emit('join_room', { roomId: data?.data?.chatdetail?._id })
+            setChatroom(data?.data?.chatdetail)
+            // console.log(chatroom ,'data in create chatroom')
+            setMessage(data?.data?.chatdetail?.messages)
+            // console.log(message,'message')
             setTopic('')
         })
     }
@@ -143,7 +153,7 @@ export default function Chat({ Socket }) {
                                 </div>
                             </div>
                             <div className="w-full sm:h-[590px] h-[530px] overflow-x-auto scrollbar-hide flex flex-col-reverse">
-                                {message?.map((obj,i) => {
+                                {message?.map((obj, i) => {
                                     return (<div key={i} className={`p-3 flex ${user[0]?._id === obj.author ? 'justify-end' : 'justify-start'}`}>
                                         <div>
                                             <div className={` min-w-[100px] max-w-[700px] min-h-[50px] flex flex-col  ${user[0]?._id === obj.author ? 'bg-gray-200' : 'bg-white  border border-gray-300'} rounded-full grid place-content-center`}>

@@ -141,12 +141,12 @@ export default function Modal({ open, setOpen, posts }) {
                                     </div>
                                     <div className='flex flex-row'>
 
-                                    <div className='flex justify-start pl-2 pt-5 '>
-                                        <h1 className='text-sx font-normal'>{posts.Likes.length} likes</h1>
-                                    </div>
-                                    <div className='flex justify-start pl-2 pt-5'>
-                                        <h1 className='text-sx font-normal'>{posts.comments.length} comments</h1>
-                                    </div>
+                                        <div className='flex justify-start pl-2 pt-5 '>
+                                            <h1 className='text-sx font-normal'>{posts.Likes.length} likes</h1>
+                                        </div>
+                                        <div className='flex justify-start pl-2 pt-5'>
+                                            <h1 className='text-sx font-normal'>{posts.comments.length} comments</h1>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

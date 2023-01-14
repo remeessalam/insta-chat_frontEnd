@@ -7,6 +7,8 @@ import allusers from '../../services/allusers'
 import Post from '../post/post'
 import Friend from '../suggestion/suggestion'
 import { useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+
 
 
 function Content() {
@@ -15,9 +17,20 @@ function Content() {
 
     const [users, setUsers] = useState([])
 
+    const navigate = useNavigate()
+
     // const [liked, setLiked] = useState(true)
 
     const refresh = useSelector(state => state.refresh.refresh)
+
+    useEffect(() => {
+        const token = JSON.parse(localStorage.getItem('userToken'))
+        if (token) {
+            navigate('/')
+        }else{
+            navigate('/login')
+        }
+    }, [navigate])
 
     useEffect(() => {
         allpost().then((data) => {
@@ -118,7 +131,7 @@ function Content() {
             {/* POST AND FRIEND DIV  */}
 
             < div className='flex ml-4 mr-4 h-5/6'>
-                
+
                 {/* POST DIV */}
 
                 < div className='flex flex-col mx-auto md:w-3/4 p-2  w-full   overflow-x-auto scrollbar-hide h-100%   ' >

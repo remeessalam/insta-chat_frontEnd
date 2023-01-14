@@ -102,7 +102,7 @@ export default function Slide({ open, setOpen }) {
                                                         {
                                                             users?.map((obj) => {
 
-                                                                return <Friend key={obj._id} frnd={obj} userfollowing={accountholder} setOpen={setOpen} setFind={setFind}/>
+                                                                return <Friend key={obj._id} frnd={obj} userfollowing={accountholder} setOpen={setOpen} setFind={setFind} />
                                                             })
 
                                                         }

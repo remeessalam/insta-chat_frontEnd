@@ -8,9 +8,9 @@ import SideBar from '../layout/sideBar'
 
 export function Showuser() {
     const { id } = useParams()
-    useEffect(()=>{
-        console.log(id,'id frnd')
-    },[id])
+    useEffect(() => {
+        console.log(id, 'id frnd')
+    }, [id])
 
     return (
         <>

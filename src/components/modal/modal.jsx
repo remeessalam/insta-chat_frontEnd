@@ -41,7 +41,7 @@ export default memo(function Modal({ open, setOpen }) {
     }
     return (
         <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10"  onClose={setOpen}>
+            <Dialog as="div" className="relative z-10" onClose={setOpen}>
 
 
                 <div className="fixed inset-0 z-10 overflow-y-auto">

@@ -5,7 +5,7 @@ const Getfriend = (id) => {
     let token = JSON.parse(localStorage.getItem('userToken'))
 
     return new Promise((resolve, reject) => {
-        axios.post('/getfriend', {id}, { headers: { 'x-access-token': token } })
+        axios.post('/getfriend', { id }, { headers: { 'x-access-token': token } })
             .then((data) => {
                 resolve(data)
             })
