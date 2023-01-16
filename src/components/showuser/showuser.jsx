@@ -61,10 +61,10 @@ function ShowProfile({ id }) {
     return (
         <>
             <div className="w-full  h-screen lg:pt-10 pt-2  mx-auto overflow-x-auto scrollbar-hide">
-                <div className="flex-col  w-screen  h-full mx-auto ">
+                <div className="flex-col  w-full  h-full mx-auto ">
                     {IsBigScreen ?
                         <div className="flex flex-row  h-1/2 p-1 sm:p-4">
-                            <div className="sm:w-1/2 w-full pl-16 ">
+                            <div className="sm:w-1/2 w-3/4 pl-16 ">
                                 {userDetails?.image ?
                                     <img className="rounded-full  h-56 w-56 border-red-400 object-cover" src={userDetails?.image} alt="" />
 
@@ -139,7 +139,7 @@ function ShowProfile({ id }) {
                             </div>
                         </div>
                     }
-                    <div className="p-5 pb-14 grid grid-cols-3 md:grid-cols-3 gap-8 ">
+                    <div className="p-5 grid grid-cols-3 md:grid-cols-3  md:gap-8 gap-1">
                         {
                             post?.map((e, i) => {
                                 return (
