@@ -47,9 +47,9 @@ function Content() {
 
     return (
 
-        < div className='flex flex-col w-full  h-screen  m-1 p-2' >
+        < div className='flex flex-col w-full  m-1 p-2' >
             {/* STORY DIV */}
-            < div className='flex  h-28 w-full rounded-md border cursor-not-allowed border-slate-300' >
+            {/* < div className='flex  h-28 w-full rounded-md border cursor-not-allowed border-slate-300' >
 
                 <div className='flex justify-start overflow-x-auto scrollbar-hide gap-1 mt-2 ml-2'>
                     <div className='flex flex-col w-16 m-1'>
@@ -128,7 +128,7 @@ function Content() {
                     </div>
 
                 </div>
-            </div >
+            </div > */}
 
             {/* POST AND FRIEND DIV  */}
 
@@ -136,7 +136,7 @@ function Content() {
 
                 {/* POST DIV */}
 
-                < div className='flex flex-col mx-auto md:w-3/4 p-2  w-full   overflow-x-auto scrollbar-hide h-100%   ' >
+                < div className='flex flex-col mx-auto md:w-3/4 p-2  w-full   overflow-x-auto scrollbar-hide h-100%  ' >
                     {
                         post.map((post) => <Post key={post._id} e={post} />)
                     }
@@ -145,11 +145,14 @@ function Content() {
                 {/* FRIEND DIV */}
 
                 {IsBigScreen &&
-                    < div className='flex flex-col   w-1/4  h-100%  m-2 overflow-y-auto scrollbar-hide' >
-                        <h1 className="ml-3 mt-2 text-sx font-semibold text-gray-500">Suggestions For You</h1>
+                    < div className='flex flex-col relative  w-1/4  h-100%   overflow-y-auto scrollbar-hide p-5' >
+                        <div className='fixed inset-y-0 right-0 w-[280px]  h-100%'>
+
+                        <h1 className="ml-3 mt-7 text-sx font-semibold text-gray-500">Suggestions For You</h1>
                         {
                             users?.map((obj) => <Friend key={obj._id} frnd={obj} />)
                         }
+                        </div>
                     </div >
                 }
             </div >
