@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { useForm } from 'react-hook-form';
 import UpdateProfile from '../../services/updateProfile';
 import jwt_decode from "jwt-decode";
-import { refreshReducer } from '../../gobalState/rerenderSlice';
+import { refreshReducer } from '../../reduxgobalState/rerenderSlice';
 import { useDispatch } from 'react-redux';
 
 export function Example({ open, setOpen }) {

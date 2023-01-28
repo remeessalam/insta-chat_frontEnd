@@ -2,7 +2,7 @@ import { useState } from 'react'
 import follow from '../../services/follow'
 import unfollow from '../../services/unfollow'
 import profilepicture from '../../services/addprofilepicture'
-import { userImage } from "../../gobalState/userSlice"
+import { userImage } from "../../reduxgobalState/userSlice"
 import { useDispatch } from 'react-redux';
 
 export default function Maping({ friends, Heading, change, setChange }) {

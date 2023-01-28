@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 // import jwt_decode from "jwt-decode";
 import { useMediaQuery } from 'react-responsive'
 import Modal from '../components/modal/modal'
-import Slide from '../components/slideover/slideover'
+import Slide from '../components/searchusers/slideover'
 import Notification from '../components/notification/notification'
 import { useSelector } from 'react-redux';
 

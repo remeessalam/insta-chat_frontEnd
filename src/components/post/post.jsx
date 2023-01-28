@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import clickLike from '../../services/like'
-import Lastseen from '../time/lastseen'
+import Lastseen from '../showposttime/addedtime'
 import jwt_decode from "jwt-decode";
-import { refreshReducer } from '../../gobalState/rerenderSlice';
+import { refreshReducer } from '../../reduxgobalState/rerenderSlice';
 import { useDispatch } from 'react-redux';
 import addComment from '../../services/addcomment'
-import Popup from '../popup/popup'
+import Popup from '../postpopup/popup'
 
 function Post({ e }) {
 
@@ -46,7 +46,7 @@ function Post({ e }) {
     }
 
     return (
-        <div key={e._id} className=" flex flex-col  mx-auto rounded-md border border-slate-300 lg:w-3/4 w-full mb-3 drop-shadow-l">
+        <div key={e._id} className=" flex flex-col  mx-auto rounded-md border border-slate-300 lg:w-3/4 w-full mb-3  drop-shadow-l">
             <div className="flex justify-start min-h-18 mt-2">
                 {
                     e.user.image ?

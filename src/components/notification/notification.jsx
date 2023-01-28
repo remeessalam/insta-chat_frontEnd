@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useEffect } from 'react'
 import notification from '../../services/getnotification'
-import Time from '../time/lastseen'
+import Time from '../showposttime/addedtime'
 export default function Notification({ open, setOpen }) {
     const [notifications, setNotifications] = useState([])
 

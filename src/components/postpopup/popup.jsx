@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import clickLike from '../../services/like'
 import addComment from '../../services/addcomment'
 import popcomment from '../../services/popcomment'
-import { refreshReducer } from '../../gobalState/rerenderSlice';
+import { refreshReducer } from '../../reduxgobalState/rerenderSlice';
 import { useDispatch } from 'react-redux';
 import jwt_decode from "jwt-decode";
 import ClearSharpIcon from '@mui/icons-material/ClearSharp';

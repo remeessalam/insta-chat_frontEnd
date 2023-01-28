@@ -4,7 +4,7 @@ import { Example } from '../editprofile/profileEditModal'
 import Getpost from '../../services/getpost'
 import Getuser from '../../services/getuser'
 // import jwt_decode from "jwt-decode";
-import Hover from '../hover/hover'
+import Hover from '../smallmodal/modal'
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
@@ -31,8 +31,8 @@ function Profile() {
 
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem('userToken'))
-       !token && navigate('/login')
-  
+        !token && navigate('/login')
+
     }, [navigate])
 
     useEffect(() => {

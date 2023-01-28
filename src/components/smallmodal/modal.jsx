@@ -2,24 +2,12 @@
 // import follow from '../../services/follow'
 // import unfollow from '../../services/unfollow'
 import ClearSharpIcon from '@mui/icons-material/ClearSharp';
-import Maping from '../friendsmapcontant/map';
+import Maping from '../showfollowersandfollowin/datamapping';
 
 export default function Hover({ change, setChange, Contant, Heading }) {
 
-    // const [followed, setFollowed] = useState(false)
-
-    // function Follow(id) {
-    //     if (followed) {
-    //         follow(id).then((data) => {
-    //             console.log(data, 'followed')
-    //         })
-    //     } else {
-    //         unfollow(id).then((data) => {
-    //             console.log(data, 'unfollowed')
-    //         })
-    //     }
-    // }
     console.log(Contant)
+    
     return (
         <>
             {
