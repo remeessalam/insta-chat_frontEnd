@@ -8,39 +8,43 @@ import addComment from '../../services/addcomment'
 import Popup from '../postpopup/popup'
 
 function Post({ e }) {
-
+    
     const [liked, setLiked] = useState()
     // const [likedEffect, setLikedEffect] = useState(false)
-
+    
     const [comment, setComment] = useState()
-
+    
     const [open, setOpen] = useState(false)
-
+    
     const dispatch = useDispatch()
-
+    
     const token = localStorage.getItem('userToken')
     const decoded = jwt_decode(token)
-
+    
     const like = (postId) => {
         // setLikedEffect(true)
         // setTimeout(() => {
-        //     setLikedEffect(false)
-        // }, 200)
-        clickLike(postId).then((data) => {
-            data.data.msg === 'Liked' && setLiked(false)
-            data.data.msg === 'Unliked' && setLiked(true)
-            setLiked(!liked)
-            dispatch(refreshReducer())
-        })
-    }
-
-    useEffect(() => {
-        e.Likes.includes(decoded.userId) ? setLiked(false) : setLiked(true)
-    }, [decoded.userId, e])
-
-    const Comments = (postId) => {
+            //     setLikedEffect(false)
+            // }, 200)
+            clickLike(postId).then((data) => {
+                // data.data.msg === 'Liked' && setLiked(false)
+                // data.data.msg === 'Unliked' && setLiked(true)
+                // setLiked(!liked)
+                dispatch(refreshReducer())
+            })
+        }
+        
+        useEffect(() => {
+            e.Likes.includes(decoded.userId) ? setLiked(false) : setLiked(true)
+        }, [decoded.userId, e])
+        
+        const Comments = (postId) => {
+        require('react-dom');
+    window.React2 = require('react');
+    console.log(window.React1 === window.React2,"===================reeeeeeeact");
         addComment(postId, comment).then(data => {
             setComment('')
+            console.log(data,'===============commment promise returned data')
             dispatch(refreshReducer())
         })
     }
@@ -96,7 +100,9 @@ function Post({ e }) {
                 <div className="flex flex-row ">
                     {liked ?
 
-                        <div className={`ml-2 flex flex-row cursor-pointer `} onClick={() => { like(e._id) }}>
+                        <div className={`ml-2 flex flex-row cursor-pointer `} onClick={() => {
+                            setLiked(!liked)
+                             like(e._id) }}>
                             {/* <FavoriteBorderRoundedIcon /> */}
                             {/* <h1>like</h1> */}
 
@@ -108,6 +114,7 @@ function Post({ e }) {
                         </div>
                         :
                         <div className={`ml-2 flex flex-row cursor-pointer  `} onClick={() => {
+                            setLiked(!liked)
                             like(e._id)
                         }}>
                             {/* <FavoriteIcon /> */}
@@ -146,13 +153,13 @@ function Post({ e }) {
             </div>
             <div className='flex flex-row justify-start pl-7 border-y p-3 w-full'>
                 <div className='w-3/4'>
-                    <input className='w-full focus:outline-0' type="text" placeholder='Add a comment...' value={comment} onChange={(e) => setComment(e.target.value)} />
+                    <input className='w-full focus:outline-0' type="text" placeholder='Add a comment...' value={comment} onChange={(event) => setComment(event.target.value)} />
                 </div>
                 <div className='w-1/4 flex justify-end' >
-                    {comment ?
-                        <button className='text-sx font-semibold text-blue-400 ' onClick={() => Comments(e._id)}>post</button>
+                    <button className='text-sx font-semibold text-blue-400 ' onClick={() => Comments(e._id)}>post</button>
+                    {/* {comment ?
                         : <p className='text-sx font-semibold text-blue-200 '>post</p>
-                    }
+                    } */}
                 </div>
 
             </div>
