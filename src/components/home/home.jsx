@@ -145,10 +145,10 @@ function Content() {
                 {/* FRIEND DIV */}
 
                 {IsBigScreen &&
-                    < div className='flex flex-col relative  w-1/4  h-100%   overflow-y-auto scrollbar-hide p-5' >
-                        <div className='fixed inset-y-0 right-0 w-[280px]  h-100%'>
+                    < div className='flex flex-col   w-1/4  h-100%   overflow-y-auto scrollbar-hide ' >
+                        <div className=' w-full  h-100%'>
 
-                        <h1 className="ml-3 mt-7 text-sx font-semibold text-gray-500">Suggestions For You</h1>
+                        <h1 className=" mt-7 text-sx font-semibold text-gray-500">Suggestions For You</h1>
                         {
                             users?.map((obj) => <Friend key={obj._id} frnd={obj} />)
                         }
