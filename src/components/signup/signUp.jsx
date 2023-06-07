@@ -113,7 +113,7 @@ function Signup() {
                                 {errors.email && <p className=' mt-1 text-center text-1xl font-sans font-light tracking-tight text-gray-900'>{errors.email.message}</p>}
                             </div>
                             <div>
-                                <input type="password" placeholder='Password' className="relative block w-full appearance-none  border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mt-3"
+                                <input type="password" placeholder='Password'  className="relative block w-full appearance-none  border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm mt-3"
                                     {...register("password", { required: { value: true, message: "Password required" }, minLength: { value: 8, message: "Password should be 8 characters long" } })} />
                                 {errors.password && <p className=' mt-1 text-center text-1xl font-sans font-light tracking-tight text-gray-900'>{errors.password.message}</p>}
                             </div>

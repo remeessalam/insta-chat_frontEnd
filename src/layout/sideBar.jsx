@@ -203,7 +203,7 @@ const SideBar = (props) => {
                 {IsBigScreen && <div className=' w-1/4 '>
                 </div>}
                 <div className="lg:w-3/4 w-full mx-auto">
-                    {props.component}
+                    {props.component} 
                 </div>
             </div>
             <Modal open={open} setOpen={setOpen} />

@@ -10,7 +10,7 @@ import io from "socket.io-client";
 function App() {
   const socket = io.connect("https://socket.adidasshoe.shop/");
   return (
-    <div>
+    <div>   
       <GoogleOAuthProvider clientId="117584395273-oljruplarl1md005un2cv7rmkvf11so6.apps.googleusercontent.com">
         <BrowserRouter>
           <Routes>
@@ -27,6 +27,6 @@ function App() {
   )
 }
 
-export default App;
+export default App; 
 
 // http://localhost:4000
